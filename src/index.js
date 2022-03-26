@@ -2,6 +2,7 @@ import Store from "./core/Store.js";
 import Observable from "./core/Observable.js";
 import EventEmitter from "./core/EventEmitter.js";
 import OrdersTable from "./core/OrdersTable.js";
+import Paginator from "./core/Paginator.js";
 
 const store = new Store();
 store.download();
@@ -28,3 +29,11 @@ const ot = new OrdersTable(
 );
 
 ot.on('edit', (orderId) => console.log({ orderId }));
+
+const paginator = new Paginator(
+  document.querySelector('[data-mount="pagination"]'),
+  10,
+  3
+);
+
+paginator.on('move', nextPage => console.log(nextPage));
